@@ -26,7 +26,7 @@
 #include "fonts.h"
 #include "ssd1306.h"
 #include "test.h"
-
+#define adxl_address 0x53<<1
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,9 +49,13 @@ ADC_HandleTypeDef hadc1;
 I2C_HandleTypeDef hi2c1;
 
 /* USER CODE BEGIN PV */
-uint16_t x, y, z;
-float xx, yy, zz;
-char str[16];
+
+
+uint8_t data_rec[6];
+uint8_t chipid=0;
+int16_t x,y,z;
+float xg, yg, zg;
+char x_char[3], y_char[3], z_char[3];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,7 +69,40 @@ static void MX_ADC1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void adxl_write (uint8_t reg, uint8_t value)
+{
+	uint8_t data[2];
+	data[0] = reg;
+	data[1] = value;
+	HAL_I2C_Master_Transmit (&hi2c1, adxl_address, data, 2, 100);
+}
 
+void adxl_read_values (uint8_t reg)
+{
+	HAL_I2C_Mem_Read (&hi2c1, adxl_address, reg, 1, (uint8_t *)data_rec, 6, 100);
+}
+
+void adxl_read_address (uint8_t reg)
+{
+	HAL_I2C_Mem_Read (&hi2c1, adxl_address, reg, 1, &chipid, 1, 100);
+}
+
+void adxl_init (void)
+{
+	adxl_read_address (0x00); // read the DEVID
+
+	adxl_write (0x31, 0x01);  // data_format range= +- 4g
+	adxl_write (0x2d, 0x00);  // reset all bits
+	adxl_write (0x2d, 0x08);  // power_cntl measure and wake up 8hz
+
+}
+
+void display_data (float data)
+{
+	sprintf (x_char, "% 4f", data);
+    SSD1306_Puts (x_char, &Font_11x18, 1);
+	SSD1306_UpdateScreen ();  // update display
+}
 /* USER CODE END 0 */
 
 /**
@@ -99,6 +136,11 @@ int main(void)
   MX_I2C1_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+	adxl_write (0x2d, 0x00);  // reset all bits
+
+	adxl_write (0x2d, 0x08);  // measure and wake up 8hz
+
+	adxl_write (0x31, 0x01);  // data_format range= +- 4g
 	SSD1306_Init();
 
 	SSD1306_GotoXY (10,10); // goto 10, 10 
@@ -124,8 +166,31 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  
-		HAL_ADC_Start(&hadc1);
+	  adxl_read_values (0x32);
+		x = ((data_rec[1]<<8)|data_rec[0]);  
+		y = ((data_rec[3]<<8)|data_rec[2]);
+		z = ((data_rec[5]<<8)|data_rec[4]);
+		
+		
+		xg = x * .0078;
+		yg = y * .0078;
+		zg = z * .0078;
+		
+		SSD1306_GotoXY (16, 1);
+		SSD1306_Puts ("X: ", &Font_11x18, 1);
+		SSD1306_GotoXY (32, 1);
+		display_data (xg);
+
+		SSD1306_GotoXY (16, 20);
+		SSD1306_Puts ("Y: ", &Font_11x18, 1);
+		SSD1306_GotoXY (32, 20);
+		display_data (yg);
+
+		SSD1306_GotoXY (16, 40);
+		SSD1306_Puts ("Z: ", &Font_11x18, 1);
+		SSD1306_GotoXY (32, 40);
+		display_data (zg);
+		/*HAL_ADC_Start(&hadc1);
 		HAL_ADC_PollForConversion(&hadc1, 100);
 		x = HAL_ADC_GetValue(&hadc1);
 		
@@ -156,6 +221,7 @@ int main(void)
 		
 		SSD1306_UpdateScreen();
 		HAL_Delay(100);
+		*/
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
