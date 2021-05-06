@@ -2055,28 +2055,28 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-         0          0       1900          8          0       1235   fonts.o
-      1550        130          0         54        264     636458   main.o
-       832         54          0          6       1024       7722   ssd1306.o
-        36          8        396          0       1024        848   startup_stm32l432xx.o
-       162         24          0         12          0      11661   stm32l4xx_hal.o
-       198         14          0          0          0      33895   stm32l4xx_hal_cortex.o
-        78          0          0          0          0       1107   stm32l4xx_hal_dma.o
-       428         20          0          0          0       2488   stm32l4xx_hal_gpio.o
-      2126         64          0          0          0      14325   stm32l4xx_hal_i2c.o
-       168          0          0          0          0       1947   stm32l4xx_hal_i2c_ex.o
-       260         24          0          0          0       2359   stm32l4xx_hal_msp.o
-        16          4          0          0          0        555   stm32l4xx_hal_pwr.o
-       120         20          0          0          0       1386   stm32l4xx_hal_pwr_ex.o
-      2036         98          0          0          0       7072   stm32l4xx_hal_rcc.o
-       966         36          0          0          0       3493   stm32l4xx_hal_rcc_ex.o
-      1448         58          0          0          0       8886   stm32l4xx_hal_uart.o
-         2          0          0          0          0       1024   stm32l4xx_hal_uart_ex.o
-        32          6          0          0          0       4742   stm32l4xx_it.o
-        68         12         72          4          0       1269   system_stm32l4xx.o
+         0          0       1900          8          0       1283   fonts.o
+      1550        130          0         54        264     636826   main.o
+       832         54          0          6       1024       7914   ssd1306.o
+        36          8        396          0       1024        864   startup_stm32l432xx.o
+       162         24          0         12          0      11789   stm32l4xx_hal.o
+       198         14          0          0          0      33991   stm32l4xx_hal_cortex.o
+        78          0          0          0          0       1139   stm32l4xx_hal_dma.o
+       428         20          0          0          0       2536   stm32l4xx_hal_gpio.o
+      2126         64          0          0          0      14549   stm32l4xx_hal_i2c.o
+       168          0          0          0          0       1995   stm32l4xx_hal_i2c_ex.o
+       260         24          0          0          0       2423   stm32l4xx_hal_msp.o
+        16          4          0          0          0        571   stm32l4xx_hal_pwr.o
+       120         20          0          0          0       1418   stm32l4xx_hal_pwr_ex.o
+      2036         98          0          0          0       7184   stm32l4xx_hal_rcc.o
+       966         36          0          0          0       3557   stm32l4xx_hal_rcc_ex.o
+      1448         58          0          0          0       9062   stm32l4xx_hal_uart.o
+         2          0          0          0          0       1056   stm32l4xx_hal_uart_ex.o
+        32          6          0          0          0       4902   stm32l4xx_it.o
+        68         12         72          4          0       1317   system_stm32l4xx.o
 
     ----------------------------------------------------------------------
-     10556        572       2400         88       2316     742472   Object Totals
+     10556        572       2400         88       2316     744376   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         30          0          0          4          4          0   (incl. Padding)
 
@@ -2141,8 +2141,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     14892        680       2400         92       2316     736340   Grand Totals
-     14892        680       2400         92       2316     736340   ELF Image Totals
+     14892        680       2400         92       2316     738244   Grand Totals
+     14892        680       2400         92       2316     738244   ELF Image Totals
      14892        680       2400         92          0          0   ROM Totals
 
 ==============================================================================

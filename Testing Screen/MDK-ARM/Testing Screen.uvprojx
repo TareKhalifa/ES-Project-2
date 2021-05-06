@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L432xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc; ../Drivers/STM32L4xx_HAL_Driver/Inc; ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32L4xx/Include; ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;  ../Drivers/STM32L4xx_HAL_Driver/Inc;  ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy;  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include;  ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -422,6 +422,21 @@
               <FileName>stm32l4xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32l4xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>max30102.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\max30102.c</FilePath>
+            </File>
+            <File>
+              <FileName>algorithm_by_RF.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\algorithm_by_RF.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\i2c_common.c</FilePath>
             </File>
           </Files>
         </Group>
