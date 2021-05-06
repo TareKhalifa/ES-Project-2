@@ -158,8 +158,6 @@ int Pedometer(){
       {
         flag=0;
       }
-     // Serial.print("steps=");
-     // Serial.println(steps);
      return(steps);
     }
   HAL_Delay(100); 
