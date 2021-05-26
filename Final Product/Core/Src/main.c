@@ -268,11 +268,13 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-	
+		xyz = read_sequential();
+
+		getheart = 0;
 		fff[0] = xyz<100?0:xyz / 100 + 48;
     fff[1] = xyz<10?0:(xyz / 10) % 10 + 48;
     fff[2] = xyz % 10 + 48;
-		
+		displayx();
     HAL_Delay(100);
     HAL_I2C_Master_Transmit(&hi2c1, 0xD0, secbuffer, 1, 10);
     HAL_I2C_Master_Receive(&hi2c1, 0xD1, secbuffer + 1, 1, 10);
