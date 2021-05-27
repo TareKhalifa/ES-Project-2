@@ -44,13 +44,6 @@ void handleRoot()
   server.send(200, "text/html", mypage()); //Send web page
 }
 
-void handleADC()
-{
-
-  server.send(200, "text/html", mypage());
-  Serial.println(x);
-}
-
 void setup(void)
 {
   Serial.begin(115200);
