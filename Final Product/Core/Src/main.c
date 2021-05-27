@@ -75,8 +75,8 @@ static void MX_USART2_UART_Init(void);
 uint8_t data_rec[6];
 uint8_t chipid=0;
 int16_t x,y,z;
-uint8_t fff[] = {'0','0','0'	};
-uint8_t fff1[] = {0,0,0,0,0,0};
+uint8_t fff[] = {'0','0','0'}; //array for heartrate
+uint8_t fff1[] = {0,0,0,0,0,0}; //array for steps
 float xg, yg, zg;
 char x_char[3], y_char[3], z_char[3];
 int xavg, yavg,zavg, steps=0, flag=0;
@@ -89,7 +89,7 @@ void adxl_write (uint8_t reg, uint8_t value)
 	uint8_t data[2];
 	data[0] = reg;
 	data[1] = value;
-	HAL_I2C_Master_Transmit (&hi2c1, adxl_address, data, 2, 100);
+	HAL_I2C_Master_Transmit (&hi2c1, adxl_address, data, 2, 100); //HAL transmit
 }
 
 void adxl_read_values (uint8_t reg)
@@ -159,7 +159,7 @@ int Pedometer(){
       HAL_Delay(150);
   
       //cal steps 
-      if (totave[i]>threshhold && flag==0)
+      if (totave[i]>threshhold && flag==0) //take it if greater than theshold
       {
          steps=steps+1;
          flag=1;
@@ -168,11 +168,11 @@ int Pedometer(){
       {
           //do nothing 
       }
-      if (totave[i] <threshhold  && flag==1)
+      if (totave[i] <threshhold  && flag==1) //if less than threshold
       {
         flag=0;
       }
-     return(steps);
+     return(steps); //return number of steps
     }
   HAL_Delay(100); 
  }
@@ -329,7 +329,7 @@ int main(void)
     SSD1306_Puts(heart_string, &Font_7x10, 1); // print Hello
     SSD1306_UpdateScreen();                    // update screen
 		if(steps_displayed==5 && !today)
-			beepnow();
+			beepnow();  //blinking lights
 		displayy();
     HAL_Delay(100);
     /* USER CODE BEGIN 3 */
